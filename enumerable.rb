@@ -2,6 +2,7 @@ module Enumerable
   # @author <billau_l@modulotech.fr>
   # Usefull for debuging and big task progress visibility in terminal
   # @example 1.upto(666).each.with_info(:annoying_loop) {|e| sleep 0.1}
+  # Heavily commented Version
   def with_info(named='', &block)
     # run count only one time
     count = self.count
