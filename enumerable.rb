@@ -40,4 +40,22 @@ module Enumerable
       block.call(value)
     end
   end
+  
+  # Compacted version 
+  def with_info(named='', &block)
+    count = self.count
+    start_time = Time.zone.now
+    remaining_time = nil
+    format = -> (time) { (((time / 60).round > 0) ? "#{(time/60).round}m" : '') + "#{(time % 60).round(2)}s" }
+    self.with_index do |value, index|
+      elapsed_time = (Time.zone.now-start_time)
+      percent = index == 0 ? 0 : (index.to_f/count*100)
+      if (percent > 0 && elapsed_time >= 1)
+        remaining_time = ((100 / percent) * elapsed_time) - elapsed_time
+      end
+      print "\r #{named} #{('%0.2f' % percent).rjust(7, ' ')}% #{(index+1).to_s.rjust(count.to_s.length, ' ')}/#{count} #{format.call(elapsed_time)} (eta: #{remaining_time.present? ? format.call(remaining_time) : '...'})"
+      block.call(value)
+    end
+  end  
+
 end
