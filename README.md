@@ -1,6 +1,6 @@
 # Ruby Snippets
 ## Enumerable
-#### [#with_info](https://github.com/billaul/snippets/blob/main/enumerable.rb#L5)
+#### [#with_info](https://github.com/billaul/snippets/blob/main/enumerable.rb#L6)
 Usefull for debuging purpose and big task progress visibility
 
 ```ruby
